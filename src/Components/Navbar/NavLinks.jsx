@@ -5,7 +5,7 @@ import { useAuth } from '../../Store/Auth.jsx';
 const MotionLink = motion.create(Link);
 
 const NavLinks = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
 
   return (
     <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
@@ -62,6 +62,15 @@ const NavLinks = () => {
             Sign Up
           </MotionLink>
         </>
+      )}
+      {isLoggedIn && user?.isAdmin && (
+        <MotionLink
+          href={'/admin'}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          Admin
+        </MotionLink>
       )}
     </HStack>
   );

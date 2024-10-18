@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Heading,
@@ -22,6 +22,8 @@ const AdminUpdate = () => {
     email: '',
     phone: '',
   });
+
+  const [isFormDataSet, setIsFormDataSet] = useState(false);
 
   useEffect(() => {
     // Fetch user data by ID
@@ -47,18 +49,22 @@ const AdminUpdate = () => {
         }
 
         const userData = await response.json();
+        console.log('Fetched user data:', userData); // Debugging log
         setFormData({
           username: userData.username || '',
           email: userData.email || '',
           phone: userData.phone || '',
         });
+        setIsFormDataSet(true);
       } catch (error) {
         console.error('Fetch error:', error.message);
       }
     };
 
-    fetchUserData();
-  }, [id, AuthorizationTOken]);
+    if (!isFormDataSet) {
+      fetchUserData();
+    }
+  }, [id, AuthorizationTOken, isFormDataSet]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -103,7 +109,7 @@ const AdminUpdate = () => {
         toast({
           title: 'Error.',
           description: 'There was an error updating the user details.',
-          status: error,
+          status: 'error',
           duration: 5000,
           isClosable: true,
         });
