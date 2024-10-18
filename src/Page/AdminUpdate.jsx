@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Heading,
@@ -109,7 +109,7 @@ const AdminUpdate = () => {
         toast({
           title: 'Error.',
           description: 'There was an error updating the user details.',
-          status: 'error',
+          status: error,
           duration: 5000,
           isClosable: true,
         });

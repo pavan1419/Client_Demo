@@ -10,7 +10,7 @@ import Creative from './Page/Creative';
 import { AdminUsers } from './Page/AdminUsers';
 import { AdminContacts } from './Page/AdminContacts';
 import Navbar from './Components/Navbar';
-import { AdminLayout } from './Page/Admin-Layout';
+import AdminLayout from './Page/Admin-Layout';
 import AdminUpdate from './Page/AdminUpdate.jsx';
 const App = () => {
   return (
