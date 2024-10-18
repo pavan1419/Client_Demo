@@ -8,6 +8,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState(null);
+  const AuthorizationTOken = `Bearer ${token}`;
 
   // Function to save the token in the browser's local storage
   const storeTokenLS = (serverToken) => {
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch('http://localhost:4000/api/auth/user', {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: AuthorizationTOken,
         },
       });
       if (response.ok) {
@@ -59,7 +60,7 @@ export const AuthProvider = ({ children }) => {
   // This makes the storeTokenLS function available to any child components
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, storeTokenLS, LogoutUser, user }}
+      value={{ isLoggedIn, storeTokenLS, LogoutUser, user, AuthorizationTOken }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,5 +1,11 @@
 # React + Vite
 
+# Client_Demo
+
+This project is a React application set up with Vite. It includes hot module replacement (HMR) and ESLint rules for code quality.
+
+## Project Structure
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
